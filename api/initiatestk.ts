@@ -20,6 +20,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ error: "Missing required fields: amount, msisdn, reference" });
     }
 
+    console.log("Initiating STK Push:", { amount, msisdn, reference, keySet: !!API_KEY, accountSet: !!ACCOUNT_ID });
+
     const response = await fetch("https://api.hashback.co.ke/initiatestk", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -32,10 +34,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }),
     });
 
-    const data = await response.json();
-    return res.status(200).json(data);
+    const responseText = await response.text();
+    console.log("Hashback response status:", response.status);
+    console.log("Hashback response body:", responseText);
+
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch {
+      return res.status(502).json({ error: "Invalid response from payment provider", raw: responseText });
+    }
+
+    return res.status(response.ok ? 200 : response.status).json(data);
   } catch (error) {
     console.error("STK Push error:", error);
-    return res.status(500).json({ error: "Failed to initiate payment" });
+    return res.status(500).json({ error: "Failed to initiate payment", details: error instanceof Error ? error.message : String(error) });
   }
 }
