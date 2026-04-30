@@ -1,0 +1,193 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-kenya-green: var(--kenya-green);
+  --color-kenya-red: var(--kenya-red);
+  --color-kenya-black: var(--kenya-black);
+
+  --shadow-soft: 0 4px 24px -8px color-mix(in oklab, var(--kenya-green) 18%, transparent);
+  --shadow-glow: 0 20px 60px -20px color-mix(in oklab, var(--kenya-green) 35%, transparent);
+  --shadow-card: 0 10px 30px -12px oklch(0 0 0 / 0.12);
+
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-slide-up: slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-scale-in: scale-in 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-pulse-ring: pulse-ring 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  --animate-gradient: gradient-x 8s ease infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-spin-slow: spin 3s linear infinite;
+}
+
+@keyframes fade-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slide-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scale-in { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+@keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 0.8; } 100% { transform: scale(2.4); opacity: 0; } }
+@keyframes gradient-x { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+:root {
+  --radius: 0.875rem;
+
+  /* Kenyan flag inspired palette */
+  --kenya-green: oklch(0.52 0.16 145);
+  --kenya-red: oklch(0.58 0.21 27);
+  --kenya-black: oklch(0.18 0.02 250);
+
+  --background: oklch(0.99 0.005 145);
+  --foreground: oklch(0.18 0.02 250);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 250);
+
+  --primary: oklch(0.52 0.16 145);
+  --primary-foreground: oklch(0.99 0 0);
+
+  --secondary: oklch(0.96 0.02 145);
+  --secondary-foreground: oklch(0.25 0.04 145);
+
+  --muted: oklch(0.96 0.01 145);
+  --muted-foreground: oklch(0.5 0.02 250);
+
+  --accent: oklch(0.95 0.04 27);
+  --accent-foreground: oklch(0.35 0.15 27);
+
+  --destructive: oklch(0.58 0.21 27);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --success: oklch(0.62 0.16 150);
+  --success-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.92 0.01 145);
+  --input: oklch(0.94 0.01 145);
+  --ring: oklch(0.52 0.16 145);
+
+  --chart-1: oklch(0.52 0.16 145);
+  --chart-2: oklch(0.58 0.21 27);
+  --chart-3: oklch(0.7 0.12 145);
+  --chart-4: oklch(0.7 0.15 60);
+  --chart-5: oklch(0.4 0.08 250);
+
+  --sidebar: oklch(0.98 0.005 145);
+  --sidebar-foreground: oklch(0.18 0.02 250);
+  --sidebar-primary: oklch(0.52 0.16 145);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.96 0.02 145);
+  --sidebar-accent-foreground: oklch(0.25 0.04 145);
+  --sidebar-border: oklch(0.92 0.01 145);
+  --sidebar-ring: oklch(0.52 0.16 145);
+}
+
+.dark {
+  --background: oklch(0.15 0.02 250);
+  --foreground: oklch(0.98 0.005 145);
+  --card: oklch(0.2 0.02 250);
+  --card-foreground: oklch(0.98 0.005 145);
+  --popover: oklch(0.2 0.02 250);
+  --popover-foreground: oklch(0.98 0.005 145);
+  --primary: oklch(0.62 0.18 145);
+  --primary-foreground: oklch(0.15 0.02 250);
+  --secondary: oklch(0.28 0.03 250);
+  --secondary-foreground: oklch(0.98 0.005 145);
+  --muted: oklch(0.28 0.03 250);
+  --muted-foreground: oklch(0.7 0.02 145);
+  --accent: oklch(0.35 0.08 27);
+  --accent-foreground: oklch(0.98 0.005 145);
+  --destructive: oklch(0.65 0.22 27);
+  --destructive-foreground: oklch(0.98 0.005 145);
+  --border: oklch(1 0 0 / 0.1);
+  --input: oklch(1 0 0 / 0.15);
+  --ring: oklch(0.62 0.18 145);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+}
+
+@layer utilities {
+  .gradient-kenya {
+    background-image: linear-gradient(135deg, var(--kenya-green) 0%, oklch(0.45 0.14 145) 50%, var(--kenya-red) 100%);
+  }
+  .gradient-text {
+    background-image: linear-gradient(135deg, var(--kenya-green), var(--kenya-red));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .gradient-mesh {
+    background-color: var(--background);
+    background-image:
+      radial-gradient(at 20% 10%, color-mix(in oklab, var(--kenya-green) 18%, transparent) 0px, transparent 50%),
+      radial-gradient(at 85% 20%, color-mix(in oklab, var(--kenya-red) 14%, transparent) 0px, transparent 50%),
+      radial-gradient(at 60% 90%, color-mix(in oklab, var(--kenya-green) 12%, transparent) 0px, transparent 50%);
+  }
+  .glass {
+    background: color-mix(in oklab, var(--card) 70%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  .shimmer {
+    background: linear-gradient(90deg,
+      color-mix(in oklab, var(--muted) 100%, transparent) 0%,
+      color-mix(in oklab, var(--card) 100%, transparent) 50%,
+      color-mix(in oklab, var(--muted) 100%, transparent) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+  .stripe-flag::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg,
+      var(--kenya-green) 0 33.3%,
+      oklch(0.18 0.02 250) 33.3% 36%,
+      oklch(1 0 0) 36% 64%,
+      oklch(0.18 0.02 250) 64% 66.7%,
+      var(--kenya-red) 66.7% 100%);
+    opacity: 0.06;
+  }
+}
